@@ -1,0 +1,168 @@
+body {
+  background-color: rgb(232, 227, 227);
+  font-family: sans-serif;
+}
+
+.parent {
+  padding: 0px 100px;
+  padding-top: 5%;
+  display: flex;
+  align-items: start;
+  gap: 40px;
+}
+.parent .dessert-div h1 {
+  margin: 0;
+  margin-bottom: 20px;
+}
+.parent .dessert-div .food-grid {
+  display: grid;
+  grid-template-columns: 250px 250px 250px;
+  row-gap: 50px;
+  column-gap: 40px;
+}
+.parent .dessert-div .food-grid .food-div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.parent .dessert-div .food-grid .food-div * {
+  margin: 0;
+}
+.parent .dessert-div .food-grid .food-div h3 {
+  color: gray;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.parent .dessert-div .food-grid .food-div .food-img {
+  margin-bottom: 30px;
+  position: relative;
+}
+.parent .dessert-div .food-grid .food-div .food-img img {
+  width: 250px;
+  border-radius: 10px;
+}
+.parent .dessert-div .food-grid .food-div .food-img .order-btn {
+  background-color: white;
+  position: absolute;
+  bottom: -20px;
+  left: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100px;
+  padding: 12px 30px;
+  border-radius: 50px;
+  border: 1px solid rgb(161, 160, 160);
+  cursor: pointer;
+}
+.parent .dessert-div .food-grid .food-div .food-img .order-btn img {
+  width: 20px;
+}
+.parent .dessert-div .food-grid .food-div .food-img .order-btn p {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: black;
+}
+.parent .dessert-div .food-grid .food-div .food-img .active-order-btn {
+  background-color: brown;
+  width: 150px;
+  border: none;
+  left: 30px;
+  padding: 12px 15px;
+  cursor: auto;
+  color: white;
+}
+.parent .dessert-div .food-grid .food-div .food-img .active-order-btn .operation-div {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  width: 20px;
+  height: 20px;
+  border-radius: 500px;
+  background-color: transparent;
+  border: 1px solid white;
+  cursor: pointer;
+}
+.parent .dessert-div .food-grid .food-div .food-img .active-order-btn .operation-div p {
+  color: white;
+}
+.parent .dessert-div .food-grid .food-div h1 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.parent .dessert-div .food-grid .food-div p {
+  color: brown;
+}
+.parent .checkout-div {
+  background-color: white;
+  width: 400px;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.parent .checkout-div h1 {
+  font-size: 1.5rem;
+  color: brown;
+}
+.parent .checkout-div .checkout {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.parent .checkout-div .checkout .checkout-details {
+  display: flex;
+  align-items: center;
+}
+.parent .checkout-div .checkout .checkout-details .checkout-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.parent .checkout-div .checkout .checkout-details .checkout-content h5 {
+  margin: 0;
+}
+.parent .checkout-div .checkout .checkout-details .checkout-content p {
+  margin: 0;
+}
+.parent .checkout-div .checkout .checkout-details .checkout-content .content-details {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+.parent .checkout-div .checkout .checkout-details .checkout-content .content-details .quantity {
+  display: flex;
+  color: brown;
+}
+.parent .checkout-div .checkout .checkout-details .checkout-content .content-details .price {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 150px;
+  gap: 10px;
+}
+.parent .checkout-div .checkout .checkout-details .close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  width: 15px;
+  height: 15px;
+  border-radius: 150px;
+  cursor: pointer;
+}
+.parent .checkout-div .checkout .checkout-details .close p {
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+.parent .checkout-div .empty-cart {
+  display: flex;
+  margin-top: 40px;
+  flex-direction: column;
+  align-items: center;
+}
+.parent .checkout-div .empty-cart p {
+  color: rgb(144, 69, 69);
+  font-size: 0.8rem;
+}
+
+/*# sourceMappingURL=main.css.map */

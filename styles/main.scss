@@ -1,0 +1,172 @@
+@use '_variables';
+
+body{
+    background-color: variables.$grayColor;
+    font-family: variables.$font;
+}
+.parent{
+    padding: 0px 100px;
+    padding-top: 5%;
+    display: flex;
+    align-items: start;
+    gap: 40px;
+    .dessert-div{
+        h1{
+            margin: 0;
+            margin-bottom: 20px;
+        }
+        .food-grid{
+            display: grid;
+            grid-template-columns: 250px 250px 250px;
+            row-gap: 50px;
+            column-gap: 40px;
+            .food-div{
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                *{
+                    margin: 0;
+                }
+                h3{
+                    color: gray;
+                    font-size: 0.8rem;
+                    font-weight: 500;
+                }
+                .food-img{
+                    margin-bottom: 30px;
+                    position: relative;
+                    img{
+                        width: 250px;
+                        border-radius: 10px;
+                    }
+                    .order-btn{
+                        background-color: white;
+                        position: absolute;
+                        bottom: -20px;
+                        left: 40px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-around;
+                        width: 100px;
+                        padding: 12px 30px;
+                        border-radius: 50px;
+                        border: 1px solid rgb(161, 160, 160);
+                        cursor: pointer;
+                        img{
+                            width: 20px;
+                        }
+                        p{
+                            font-size: 0.8rem;
+                            font-weight: 500;
+                            color: black;
+                        }
+                    }
+                    .active-order-btn{
+                        background-color: brown;
+                        width: 150px;
+                        border: none;
+                        left: 30px;
+                        padding: 12px 15px;
+                        cursor:auto;
+                        color: white;
+                        .operation-div{
+                            display: flex;
+                            justify-content: center;
+                            align-items: start;
+                            width: 20px;
+                            height: 20px;
+                            border-radius: 500px;
+                            background-color: transparent;
+                            border: 1px solid white;
+                            cursor: pointer;
+                            p{
+                                color: white;
+                            }
+                        }
+                    }
+                }
+                h1{
+                    font-size: 1rem;
+                    font-weight: 600;
+                }
+                p{
+                    color: brown;
+                }
+            }
+        }
+    }
+    .checkout-div{
+        background-color: white;
+        width: 400px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        h1{
+            font-size: 1.5rem;
+            color: brown;
+        }
+        .checkout{
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            .checkout-details{
+                display: flex;
+                align-items: center;
+                .checkout-content{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    h5{
+                        margin: 0;
+                    }
+                    p{
+                        margin: 0;
+                    }
+                    .content-details{
+                        display: flex;
+                        align-items: center;
+                        font-size: 0.9rem;
+                        .quantity{
+                            display: flex;
+                            color: brown;
+                        }
+                        .price{
+                            display: flex;
+                            align-items: center;
+                            margin-left: 10px;
+                            margin-right: 150px;
+                            gap: 10px;
+                        }
+                    }
+                }
+                .close{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: 1px solid black;
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 150px;
+                    cursor: pointer;
+                    p{
+                        font-size: 0.8rem;
+                        margin-top: 10px;
+                    }
+                }
+            }
+            
+        }
+        
+        .empty-cart{
+            display: flex;
+            margin-top: 40px;
+            flex-direction: column;
+            align-items: center;
+            p{
+                color: rgb(144, 69, 69);
+                font-size: 0.8rem;
+            }
+        }
+    }
+}
+
