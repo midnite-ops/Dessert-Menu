@@ -12,7 +12,7 @@ product.forEach((food) => {
         <div class="food-div js-food-item-${food.id}">
             <div class="food-img">
                 <img src="${food.image}" alt="${food.title}">
-                <div class="order-btn js-order-btn-${food.id}" data-food-id = "${food.id}">
+                <div id="${food.id}" class="order-btn js-order-btn-${food.id}" data-food-id="${food.id}">
                     <img src="assets/food-images/icon-add-to-cart.svg" alt="cart image">
                     <p>Add to Cart</p>
                 </div>
@@ -25,55 +25,50 @@ product.forEach((food) => {
     document.querySelector('.js-food-div').innerHTML = foodHTML;
 })
 
-
 document.querySelectorAll('.order-btn').forEach((button) => {
     button.addEventListener('click', () => {
-        const { foodId } = button.dataset; // Get the food ID from the button
+        const { foodId } = button.dataset;
 
         const foodItem = document.querySelector(`.js-order-btn-${foodId}`);
-        foodItem.innerHTML = `
-            <div class="js-decrement-${foodId} operation-div">-</div>
-            <div class="js-food-quantity-${foodId}">1</div>
-            <div class="js-increment-${foodId} operation-div">+</div>
-        `;
-        foodItem.classList.add('active-order-btn');
 
-        // Now, after updating the HTML, add the event listener
-        const incrementButton = document.querySelector(`.js-increment-${foodId}`);
-        if (incrementButton) {
-            incrementButton.addEventListener('click', () => {
-                console.log(`Increment button clicked for food ID: ${foodId}`);
-                const quantityElement = document.querySelector(`.js-food-quantity-${foodId}`);
-                if (quantityElement) {
-                    let quantity = Number(quantityElement.innerHTML);
-                    quantity++; // Increment the quantity
-                    quantityElement.innerHTML = quantity; // Update the quantity
-                    console.log(`Updated quantity to: ${quantity}`);
-                }
-            });
-        } else {
-            console.error(`Increment button not found for food ID: ${foodId}`);
-        }
+        if (!foodItem.classList.contains('active-order-btn')) {
+            foodItem.innerHTML = `
+                <div class="operation-div js-decrement" data-food-id="${foodId}">-</div>
+                <div id="js-food-quantity-${foodId}" class="quantity-display">1</div>
+                <div class="operation-div js-increment" data-food-id="${foodId}">+</div>
+            `;
 
-        // Same for the decrement button
-        const decrementButton = document.querySelector(`.js-decrement-${foodId}`);
-        if (decrementButton) {
-            decrementButton.addEventListener('click', () => {
-                console.log(`Decrement button clicked for food ID: ${foodId}`);
-                const quantityElement = document.querySelector(`.js-food-quantity-${foodId}`);
-                if (quantityElement) {
-                    let quantity = Number(quantityElement.innerHTML);
-                    if (quantity > 1) {
-                        quantity--; // Decrement only if greater than 1
-                        quantityElement.innerHTML = quantity;
-                        console.log(`Updated quantity to: ${quantity}`);
-                    }
-                }
-            });
-        } else {
-            console.error(`Decrement button not found for food ID: ${foodId}`);
+            foodItem.classList.add('active-order-btn');
         }
     });
+});
+
+document.addEventListener('click', (event) => {
+    const target = event.target; // this points to the specific element that was clicked i.e either the + or the - button
+
+    // Increment functionality
+    if (target.classList.contains('js-increment')) {
+        const foodId = target.dataset.foodId;
+        const quantityElement = document.getElementById(`js-food-quantity-${foodId}`);
+
+        let quantity = Number(quantityElement.textContent);
+        quantity++;
+
+        quantityElement.textContent = quantity; // Update only the quantity text
+    }
+
+    // Decrement functionality
+    if (target.classList.contains('js-decrement')) {
+        const foodId = target.dataset.foodId;
+        const quantityElement = document.getElementById(`js-food-quantity-${foodId}`);
+
+        let quantity = Number(quantityElement.textContent);
+
+        if (quantity > 1) {
+            quantity--;
+            quantityElement.textContent = quantity; // Update only the quantity text
+        }
+    }
 });
 
 function renderCart(){
