@@ -1,6 +1,6 @@
 import { product } from "./data/products.js";
 import { formatCurrency } from "./utilities/money.js";
-import { addToCart, cart,  cartTotal} from "./cart.js";
+import { addToCart, cart, cartTotal, decrementCartItem} from "./cart.js";
 
 let foodHTML = '';
 
@@ -9,8 +9,8 @@ renderCart()
 cartTotal(totalCart);
 product.forEach((food) => {
     foodHTML += `
-        <div class="food-div js-food-item-${food.id}">
-            <div class="food-img">
+        <div class="food-div">
+            <div class="food-img js-food-item-${food.id}">
                 <img src="${food.image}" alt="${food.title}">
                 <div id="${food.id}" class="order-btn js-order-btn-${food.id}" data-food-id="${food.id}">
                     <img src="assets/food-images/icon-add-to-cart.svg" alt="cart image">
@@ -30,6 +30,7 @@ document.querySelectorAll('.order-btn').forEach((button) => {
         const { foodId } = button.dataset;
 
         const foodItem = document.querySelector(`.js-order-btn-${foodId}`);
+        const foodImg = document.querySelector(`.js-food-item-${foodId}`);
 
         if (!foodItem.classList.contains('active-order-btn')) {
             foodItem.innerHTML = `
@@ -37,7 +38,12 @@ document.querySelectorAll('.order-btn').forEach((button) => {
                 <div id="js-food-quantity-${foodId}" class="quantity-display">1</div>
                 <div class="operation-div js-increment" data-food-id="${foodId}">+</div>
             `;
-
+            const product = productId(foodId);
+            const quantity = Number(document.getElementById(`js-food-quantity-${foodId}`).innerHTML);
+            addToCart(product, quantity);
+            renderCart()
+            cartTotal(totalCart);
+            foodImg.classList.add('show-border');
             foodItem.classList.add('active-order-btn');
         }
     });
@@ -45,31 +51,32 @@ document.querySelectorAll('.order-btn').forEach((button) => {
 
 document.addEventListener('click', (event) => {
     const target = event.target; // this points to the specific element that was clicked i.e either the + or the - button
-
+    const foodId = target.dataset.foodId;
+    let productItem = productId(foodId)
     // Increment functionality
     if (target.classList.contains('js-increment')) {
-        const foodId = target.dataset.foodId;
         const quantityElement = document.getElementById(`js-food-quantity-${foodId}`);
 
         let quantity = Number(quantityElement.textContent);
         quantity++;
+        addToCart(productItem, quantity)
+        renderCart()
+        cartTotal(totalCart);
 
         quantityElement.textContent = quantity; // Update only the quantity text
     }
 
     // Decrement functionality
     if (target.classList.contains('js-decrement')) {
-        const foodId = target.dataset.foodId;
         const quantityElement = document.getElementById(`js-food-quantity-${foodId}`);
+        const product = productId(foodId);
 
-        let quantity = Number(quantityElement.textContent);
-
-        if (quantity > 1) {
-            quantity--;
-            quantityElement.textContent = quantity; // Update only the quantity text
-        }
+        let quantity = decrementCartItem(product);
+        renderCart()
+        cartTotal(totalCart);
+        quantityElement.textContent = quantity; 
     }
-});
+})
 
 function renderCart(){
     let checkoutHTML = '';
@@ -88,11 +95,20 @@ function renderCart(){
                         </div>
                     </div>
                 </div>
-                <div class="close">
+                <div class="close js-close js-delete-cart-${foodItem.id}" data-removeCartItem = '${foodItem.id}'>
                     <p>x</p>
                 </div>
             </div>
         `
     })
     document.querySelector('.js-checkout').innerHTML = checkoutHTML;
+}
+function productId(itemId){
+    let productItem;
+    product.forEach((item) => {
+        if(item.id === itemId){
+            productItem =  item
+        }
+    })
+    return productItem;
 }

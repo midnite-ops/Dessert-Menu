@@ -14,7 +14,7 @@ function saveToCart(){
 }
 
 export function addToCart(product, newQuantity){
-    let matchingFood = '';
+    let matchingFood;
     cart.forEach((food) => {
         if(food.id === product.id){
             matchingFood = food
@@ -28,11 +28,31 @@ export function addToCart(product, newQuantity){
             name: product.name,
             price: product.price,
             titlePrice: product.price,
-            quantity: 1,
+            quantity: newQuantity,
             id: product.id
         })
     }
 }
+
+ export function decrementCartItem(product){
+    let matchingFood;
+    cart.forEach((food) => {
+        if(food.id === product.id){
+            matchingFood = food
+        }
+    })
+    if(matchingFood){
+        if(matchingFood.quantity <= 1){
+            matchingFood.quantity = 1;
+        }else{
+            matchingFood.quantity--
+        }
+        const quantity = matchingFood.quantity;
+        matchingFood.price = quantity * matchingFood.titlePrice;
+        console.log(cart)
+        return  quantity
+    }
+ }
 
 export function cartTotal(value){
     let total = 0
@@ -40,5 +60,14 @@ export function cartTotal(value){
         total += item.quantity
     })
     value.innerHTML = total
+}
+
+export function removeCartItem(productId){
+    let matchingFood;
+    cart.forEach((food) => {
+        if(food.id === product.id){
+            matchingFood = food
+        }
+    })
 }
 // sass --watch styles/main.scss:css/main.css

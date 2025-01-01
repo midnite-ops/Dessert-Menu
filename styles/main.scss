@@ -32,6 +32,11 @@ body{
                     font-size: 0.8rem;
                     font-weight: 500;
                 }
+                .show-border{
+                    border: 1px solid brown;
+                    background-color: red !important;
+                    padding: 100px;
+                }
                 .food-img{
                     margin-bottom: 30px;
                     position: relative;
