@@ -2,9 +2,9 @@
  export let cart = [
     {
         name: 'Waffle with Berries',
-        quantity: 1,
         price: 650,
         titlePrice: 650,
+        quantity: 1,
         id: 'ac4a6449-efc1-4a6e-9171-862decdba187'
     }
 ]

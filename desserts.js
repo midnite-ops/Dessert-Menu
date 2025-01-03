@@ -82,7 +82,7 @@ function renderCart(){
     let checkoutHTML = '';
     cart.forEach((foodItem) => {
         checkoutHTML += `
-            <div class="checkout-details">
+            <div class="checkout-details js-container-${foodItem.id}">
                 <div class="checkout-content">
                     <h5>${foodItem.name}</h5>
                     <div class="content-details">
@@ -95,13 +95,27 @@ function renderCart(){
                         </div>
                     </div>
                 </div>
-                <div class="close js-close js-delete-cart-${foodItem.id}" data-removeCartItem = '${foodItem.id}'>
+                <div class="close js-close js-delete-cart-${foodItem.id}" data-remove-cart = '${foodItem.id}'>
                     <p>x</p>
                 </div>
             </div>
         `
     })
     document.querySelector('.js-checkout').innerHTML = checkoutHTML;
+    document.querySelectorAll('.js-close').forEach((button)  => {
+        button.addEventListener('click', () => {
+            const closeBtnId = button.dataset.removeCart;
+            const foodContainer = document.querySelector(`.js-container-${closeBtnId}`);
+            cart.forEach((foodItem, index) => {
+                if(foodItem.id === closeBtnId){
+                    cart.splice(index, 1)
+                    foodContainer.remove()
+                    cartTotal(totalCart)
+                    console.log(cart)
+                }
+            })
+        })
+    })
 }
 function productId(itemId){
     let productItem;
