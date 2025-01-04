@@ -33,12 +33,19 @@ body {
   font-size: 0.8rem;
   font-weight: 500;
 }
+.parent .dessert-div .food-grid .food-div .show-border {
+  border: 1px solid brown;
+  border-radius: 10px;
+}
+.parent .dessert-div .food-grid .food-div .show-border img {
+  margin-bottom: -3px;
+}
 .parent .dessert-div .food-grid .food-div .food-img {
   margin-bottom: 30px;
   position: relative;
 }
 .parent .dessert-div .food-grid .food-div .food-img img {
-  width: 250px;
+  width: 100%;
   border-radius: 10px;
 }
 .parent .dessert-div .food-grid .food-div .food-img .order-btn {
@@ -112,6 +119,8 @@ body {
 .parent .checkout-div .checkout .checkout-details {
   display: flex;
   align-items: center;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  padding-bottom: 10px;
 }
 .parent .checkout-div .checkout .checkout-details .checkout-content {
   display: flex;

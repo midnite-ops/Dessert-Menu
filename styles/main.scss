@@ -4,6 +4,7 @@ body{
     background-color: variables.$grayColor;
     font-family: variables.$font;
 }
+
 .parent{
     padding: 0px 100px;
     padding-top: 5%;
@@ -34,14 +35,16 @@ body{
                 }
                 .show-border{
                     border: 1px solid brown;
-                    background-color: red !important;
-                    padding: 100px;
+                    border-radius: 10px;
+                    img{
+                        margin-bottom: -3px;
+                    }
                 }
                 .food-img{
                     margin-bottom: 30px;
                     position: relative;
                     img{
-                        width: 250px;
+                        width: 100%;
                         border-radius: 10px;
                     }
                     .order-btn{
@@ -117,6 +120,8 @@ body{
             .checkout-details{
                 display: flex;
                 align-items: center;
+                border-bottom: 1px solid rgb(230, 230, 230);
+                padding-bottom: 10px;
                 .checkout-content{
                     display: flex;
                     flex-direction: column;

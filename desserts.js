@@ -1,6 +1,19 @@
 import { product } from "./data/products.js";
 import { formatCurrency } from "./utilities/money.js";
-import { addToCart, cart, cartTotal, decrementCartItem} from "./cart.js";
+import { saveToCart, addToCart, cart, cartTotal, decrementCartItem} from "./cart.js";
+emptyCart();
+function emptyCart(){
+    if(cart.length === 0){
+        localStorage.clear()
+        document.querySelector('.js-checkout').innerHTML = 
+        `
+            <div class= 'empty-cart'>
+                <img src="assets/food-images//illustration-empty-cart.svg" alt="empty cart">
+                <p>Your added items will appear here</p>
+            </div>
+        `
+    }
+}
 
 let foodHTML = '';
 
@@ -110,6 +123,8 @@ function renderCart(){
                 if(foodItem.id === closeBtnId){
                     cart.splice(index, 1)
                     foodContainer.remove()
+                    saveToCart()
+                    emptyCart()
                     cartTotal(totalCart)
                     console.log(cart)
                 }

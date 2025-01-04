@@ -1,15 +1,18 @@
-// export let cart = JSON.parse(localStorage.getItem('cart'))
- export let cart = [
-    {
-        name: 'Waffle with Berries',
-        price: 650,
-        titlePrice: 650,
-        quantity: 1,
-        id: 'ac4a6449-efc1-4a6e-9171-862decdba187'
-    }
-]
+export let cart = JSON.parse(localStorage.getItem('cart'));
 
-function saveToCart(){
+if(!cart){
+    cart = [
+        {
+            name: 'Waffle with Berries',
+            price: 650,
+            titlePrice: 650,
+            quantity: 1,
+            id: 'ac4a6449-efc1-4a6e-9171-862decdba187'
+        }
+    ]
+}
+
+export function saveToCart(){
     localStorage.setItem('cart', JSON.stringify(cart))
 }
 
@@ -32,6 +35,7 @@ export function addToCart(product, newQuantity){
             id: product.id
         })
     }
+    saveToCart()
 }
 
  export function decrementCartItem(product){
@@ -52,6 +56,7 @@ export function addToCart(product, newQuantity){
         console.log(cart)
         return  quantity
     }
+    saveToCart()
  }
 
 export function cartTotal(value){
