@@ -1,0 +1,109 @@
+.checkout-div {
+  background-color: white;
+  width: 400px;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.checkout-div h1 {
+  font-size: 1.5rem;
+  color: brown;
+}
+.checkout-div .checkout {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.checkout-div .checkout .checkout-details {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  padding-bottom: 10px;
+}
+.checkout-div .checkout .checkout-details .checkout-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.checkout-div .checkout .checkout-details .checkout-content h5 {
+  margin: 0;
+}
+.checkout-div .checkout .checkout-details .checkout-content p {
+  margin: 0;
+}
+.checkout-div .checkout .checkout-details .checkout-content .content-details {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+.checkout-div .checkout .checkout-details .checkout-content .content-details .quantity {
+  display: flex;
+  color: brown;
+}
+.checkout-div .checkout .checkout-details .checkout-content .content-details .price {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 150px;
+  gap: 10px;
+}
+.checkout-div .checkout .checkout-details .close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  width: 15px;
+  height: 15px;
+  border-radius: 150px;
+  cursor: pointer;
+}
+.checkout-div .checkout .checkout-details .close p {
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+.checkout-div .empty-cart {
+  display: flex;
+  margin-top: 40px;
+  flex-direction: column;
+  align-items: center;
+}
+.checkout-div .empty-cart p {
+  color: rgb(144, 69, 69);
+  font-size: 0.8rem;
+}
+.checkout-div .cart-summary-section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+.checkout-div .cart-summary-section .summary-div-1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.checkout-div .cart-summary-section .summary-div-1 h1 {
+  color: black;
+}
+.checkout-div .cart-summary-section .summary-div-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: rgb(232, 227, 227);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.checkout-div .cart-summary-section button {
+  background-color: brown;
+  color: white;
+  padding: 15px 0px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+}
+.checkout-div .hide-summary {
+  display: none;
+}
+
+/*# sourceMappingURL=checkout.css.map */

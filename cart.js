@@ -15,6 +15,13 @@ if(!cart){
 export function saveToCart(){
     localStorage.setItem('cart', JSON.stringify(cart))
 }
+export function cartSummaryCheckout(){
+    let cartTotal = 0;
+    cart.forEach((item) => {
+        cartTotal += item.price;
+    })
+    return cartTotal;
+}
 
 export function addToCart(product, newQuantity){
     let matchingFood;
@@ -66,13 +73,6 @@ export function cartTotal(value){
     })
     value.innerHTML = total
 }
-
-export function removeCartItem(productId){
-    let matchingFood;
-    cart.forEach((food) => {
-        if(food.id === product.id){
-            matchingFood = food
-        }
-    })
-}
 // sass --watch styles/main.scss:css/main.css
+// // sass --watch styles/checkout.scss:css/checkout.css
+// sass --watch styles/main.scss:css/main.css styles/checkout.scss:css/checkout.css

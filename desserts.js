@@ -1,23 +1,12 @@
 import { product } from "./data/products.js";
 import { formatCurrency } from "./utilities/money.js";
-import { saveToCart, addToCart, cart, cartTotal, decrementCartItem} from "./cart.js";
-emptyCart();
-function emptyCart(){
-    if(cart.length === 0){
-        localStorage.clear()
-        document.querySelector('.js-checkout').innerHTML = 
-        `
-            <div class= 'empty-cart'>
-                <img src="assets/food-images//illustration-empty-cart.svg" alt="empty cart">
-                <p>Your added items will appear here</p>
-            </div>
-        `
-    }
-}
+import { addToCart, cartTotal, decrementCartItem, cartSummaryCheckout} from "./cart.js";
+import { emptyCart, renderCart, cartSummary} from "./cartSummary.js";
+cartSummary();
 
 let foodHTML = '';
 
-const totalCart = document.querySelector('.js-cart-total');
+export const totalCart = document.querySelector('.js-cart-total');
 renderCart()
 cartTotal(totalCart);
 product.forEach((food) => {
@@ -58,6 +47,8 @@ document.querySelectorAll('.order-btn').forEach((button) => {
             cartTotal(totalCart);
             foodImg.classList.add('show-border');
             foodItem.classList.add('active-order-btn');
+            emptyCart()
+            document.querySelector('.js-cart-summary').innerHTML = `$${formatCurrency(cartSummaryCheckout())}`;
         }
     });
 });
@@ -75,6 +66,7 @@ document.addEventListener('click', (event) => {
         addToCart(productItem, quantity)
         renderCart()
         cartTotal(totalCart);
+        document.querySelector('.js-cart-summary').innerHTML = `$${formatCurrency(cartSummaryCheckout())}`;
 
         quantityElement.textContent = quantity; // Update only the quantity text
     }
@@ -87,51 +79,10 @@ document.addEventListener('click', (event) => {
         let quantity = decrementCartItem(product);
         renderCart()
         cartTotal(totalCart);
+        document.querySelector('.js-cart-summary').innerHTML = `$${formatCurrency(cartSummaryCheckout())}`;
         quantityElement.textContent = quantity; 
     }
 })
-
-function renderCart(){
-    let checkoutHTML = '';
-    cart.forEach((foodItem) => {
-        checkoutHTML += `
-            <div class="checkout-details js-container-${foodItem.id}">
-                <div class="checkout-content">
-                    <h5>${foodItem.name}</h5>
-                    <div class="content-details">
-                        <div class="quantity">
-                            <p>${foodItem.quantity}x</p>
-                        </div>
-                        <div class="price">
-                            <p style="color: rgb(144, 69, 69);">@$${formatCurrency(foodItem.titlePrice)}</p>
-                            <p>$${formatCurrency(foodItem.price)}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="close js-close js-delete-cart-${foodItem.id}" data-remove-cart = '${foodItem.id}'>
-                    <p>x</p>
-                </div>
-            </div>
-        `
-    })
-    document.querySelector('.js-checkout').innerHTML = checkoutHTML;
-    document.querySelectorAll('.js-close').forEach((button)  => {
-        button.addEventListener('click', () => {
-            const closeBtnId = button.dataset.removeCart;
-            const foodContainer = document.querySelector(`.js-container-${closeBtnId}`);
-            cart.forEach((foodItem, index) => {
-                if(foodItem.id === closeBtnId){
-                    cart.splice(index, 1)
-                    foodContainer.remove()
-                    saveToCart()
-                    emptyCart()
-                    cartTotal(totalCart)
-                    console.log(cart)
-                }
-            })
-        })
-    })
-}
 function productId(itemId){
     let productItem;
     product.forEach((item) => {
