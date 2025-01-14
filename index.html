@@ -6,6 +6,7 @@
     <title>Dessert Menu</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/checkout.css">
+    <link rel="stylesheet" href="css/order-confirmed.css">
 </head>
 <body>
     <div class="parent">
@@ -15,14 +16,21 @@
         </div>
         <div class="checkout-div">
             <h1>Your Cart (<span class="js-cart-total">0</span>)</h1>
-            <div class="checkout js-checkout">
-                <div class= 'empty-cart'>
-                    <img src="assets/food-images//illustration-empty-cart.svg" alt="empty cart">
-                    <p>Your added items will appear here</p>
-                </div>
-            </div>
+            <div class="checkout js-checkout"></div>
+            <div class="js-checkout-summary"></div>
         </div>
     </div>
+    <section class="overlay js-overlay">
+        <div class="order-confirmed js-order-confirmed">
+            <div class="order-header">
+                <img src="assets/food-images//icon-order-confirmed.svg" alt="">
+                <h1>Order Confirmed</h1>
+                <p>We hope you enjoy your food</p>
+            </div>
+            <div class="js-new-order new-order"></div>
+            <button class="js-close-summary">Start New Order</button>
+        </div>
+    </section>
     <script src="desserts.js" type="module"></script>
 </body>
 </html>

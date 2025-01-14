@@ -74,7 +74,7 @@
 .checkout-div .cart-summary-section {
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 .checkout-div .cart-summary-section .summary-div-1 {
   display: flex;

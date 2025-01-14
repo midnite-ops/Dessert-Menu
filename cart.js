@@ -7,7 +7,8 @@ if(!cart){
             price: 650,
             titlePrice: 650,
             quantity: 1,
-            id: 'ac4a6449-efc1-4a6e-9171-862decdba187'
+            id: 'ac4a6449-efc1-4a6e-9171-862decdba187',
+            image: './assets/food-images/image-waffle-desktop.jpg'
         }
     ]
 }
@@ -33,16 +34,18 @@ export function addToCart(product, newQuantity){
     if(matchingFood){
         matchingFood.quantity = newQuantity
         matchingFood.price = (newQuantity * matchingFood.titlePrice)
+        saveToCart()
     }else{
         cart.push({
+            image: product.image,
             name: product.name,
             price: product.price,
             titlePrice: product.price,
             quantity: newQuantity,
             id: product.id
         })
+        saveToCart()
     }
-    saveToCart()
 }
 
  export function decrementCartItem(product){
@@ -55,15 +58,17 @@ export function addToCart(product, newQuantity){
     if(matchingFood){
         if(matchingFood.quantity <= 1){
             matchingFood.quantity = 1;
+            saveToCart()
         }else{
             matchingFood.quantity--
+            saveToCart()
         }
         const quantity = matchingFood.quantity;
         matchingFood.price = quantity * matchingFood.titlePrice;
         console.log(cart)
+        saveToCart()
         return  quantity
     }
-    saveToCart()
  }
 
 export function cartTotal(value){
@@ -75,4 +80,4 @@ export function cartTotal(value){
 }
 // sass --watch styles/main.scss:css/main.css
 // // sass --watch styles/checkout.scss:css/checkout.css
-// sass --watch styles/main.scss:css/main.css styles/checkout.scss:css/checkout.css
+// sass --watch styles/main.scss:css/main.css styles/checkout.scss:css/checkout.css styles/order-confirmed.scss:css/order-confirmed.css

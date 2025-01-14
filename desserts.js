@@ -1,13 +1,15 @@
 import { product } from "./data/products.js";
 import { formatCurrency } from "./utilities/money.js";
-import { addToCart, cartTotal, decrementCartItem, cartSummaryCheckout} from "./cart.js";
-import { emptyCart, renderCart, cartSummary} from "./cartSummary.js";
-cartSummary();
+import { addToCart, cartTotal, decrementCartItem, cart} from "./cart.js";
+import { checkoutSummaryCart } from "./checkout/checkoutSummary.js";
+
+// 
+checkoutSummaryCart()
 
 let foodHTML = '';
 
 export const totalCart = document.querySelector('.js-cart-total');
-renderCart()
+
 cartTotal(totalCart);
 product.forEach((food) => {
     foodHTML += `
@@ -43,12 +45,11 @@ document.querySelectorAll('.order-btn').forEach((button) => {
             const product = productId(foodId);
             const quantity = Number(document.getElementById(`js-food-quantity-${foodId}`).innerHTML);
             addToCart(product, quantity);
-            renderCart()
             cartTotal(totalCart);
+            checkoutSummaryCart()
+            console.log(cart)
             foodImg.classList.add('show-border');
             foodItem.classList.add('active-order-btn');
-            emptyCart()
-            document.querySelector('.js-cart-summary').innerHTML = `$${formatCurrency(cartSummaryCheckout())}`;
         }
     });
 });
@@ -64,9 +65,9 @@ document.addEventListener('click', (event) => {
         let quantity = Number(quantityElement.textContent);
         quantity++;
         addToCart(productItem, quantity)
-        renderCart()
+        checkoutSummaryCart()
         cartTotal(totalCart);
-        document.querySelector('.js-cart-summary').innerHTML = `$${formatCurrency(cartSummaryCheckout())}`;
+        console.log(cart)
 
         quantityElement.textContent = quantity; // Update only the quantity text
     }
@@ -77,9 +78,9 @@ document.addEventListener('click', (event) => {
         const product = productId(foodId);
 
         let quantity = decrementCartItem(product);
-        renderCart()
+        checkoutSummaryCart()
         cartTotal(totalCart);
-        document.querySelector('.js-cart-summary').innerHTML = `$${formatCurrency(cartSummaryCheckout())}`;
+        console.log(cart)
         quantityElement.textContent = quantity; 
     }
 })
