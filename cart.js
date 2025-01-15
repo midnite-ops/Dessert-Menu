@@ -1,6 +1,6 @@
-export let cart = JSON.parse(localStorage.getItem('cart'));
+export let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-if(cart.length === 0 || !cart){
+if(cart.length === 0){
     cart = [
         {
             name: 'Waffle with Berries',
@@ -11,6 +11,7 @@ if(cart.length === 0 || !cart){
             image: './assets/food-images/image-waffle-desktop.jpg'
         }
     ]
+    saveToCart()
 }
 
 export function saveToCart(){
