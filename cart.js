@@ -1,6 +1,6 @@
 export let cart = JSON.parse(localStorage.getItem('cart'));
 
-if(cart.length === 0){
+if(cart.length === 0 || !cart){
     cart = [
         {
             name: 'Waffle with Berries',
