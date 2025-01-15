@@ -1,12 +1,11 @@
-import { cart, saveToCart, cartTotal, cartSummaryCheckout} from "../cart.js";
+import {cart, saveToCart, cartTotal, cartSummaryCheckout} from "../cart.js";
 import { formatCurrency } from "../utilities/money.js";
-import { totalCart } from "../desserts.js";
 import { paymentSummary } from "./paymentSummary.js";
 
 export function checkoutSummaryCart(){
-    console.log(cart, 'cart')
+    const totalCart = document.querySelector('.js-cart-total');
+    cartTotal(totalCart);
     if(cart.length === 0){
-        localStorage.clear();
         document.querySelector('.js-checkout').innerHTML = 
         `
             <div class= 'empty-cart'>
@@ -28,7 +27,7 @@ export function checkoutSummaryCart(){
                                 <p>${foodItem.quantity}x</p>
                             </div>
                             <div class="price">
-                                <p style="color: rgb(144, 69, 69);">@$${formatCurrency(foodItem.titlePrice)}</p>
+                                <p style="color: gray;">@$${formatCurrency(foodItem.titlePrice)}</p>
                                 <p>$${formatCurrency(foodItem.price)}</p>
                             </div>
                         </div>
@@ -49,9 +48,7 @@ export function checkoutSummaryCart(){
                     cart.splice(index, 1)
                     foodContainer.remove()
                     saveToCart()
-                    cartTotal(totalCart);
                     checkoutSummaryCart()
-                    console.log(cart)
                 }
             })
         })
@@ -73,7 +70,8 @@ export function checkoutSummaryCart(){
     `
     document.querySelector('.js-checkout-summary').innerHTML = cartSummary;
     document.querySelector('.js-confirm-order').addEventListener('click', () => {
-        // alert('Order Confirmed')
+        const body = document.body;
+        body.style.overflow = 'hidden';
         console.log(paymentSummary());
     })
     }

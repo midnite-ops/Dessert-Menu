@@ -101,4 +101,35 @@ body {
   color: brown;
 }
 
+@media (max-width: 576px) {
+  .parent {
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 30px;
+    gap: 50px;
+  }
+  .parent .food-grid {
+    display: grid;
+    grid-template-columns: 350px !important;
+  }
+  .parent .food-grid .food-img .food-image {
+    height: 250px;
+  }
+  .order-btn {
+    position: absolute;
+    bottom: -20px;
+    left: 90px !important;
+    padding: 12px 30px;
+    border-radius: 50px;
+  }
+  .order-btn img {
+    width: 25px !important;
+  }
+  .order-btn p {
+    font-size: 0.85rem !important;
+    font-weight: 500;
+    color: black;
+  }
+}
+
 /*# sourceMappingURL=main.css.map */

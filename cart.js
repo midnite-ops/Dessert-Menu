@@ -1,6 +1,6 @@
 export let cart = JSON.parse(localStorage.getItem('cart'));
 
-if(!cart){
+if(cart.length === 0){
     cart = [
         {
             name: 'Waffle with Berries',
@@ -15,6 +15,10 @@ if(!cart){
 
 export function saveToCart(){
     localStorage.setItem('cart', JSON.stringify(cart))
+}
+export function clearCart(){
+    cart = [];
+    saveToCart()
 }
 export function cartSummaryCheckout(){
     let cartTotal = 0;
@@ -32,7 +36,7 @@ export function addToCart(product, newQuantity){
         }
     })
     if(matchingFood){
-        matchingFood.quantity = newQuantity
+        matchingFood.quantity = newQuantity;
         matchingFood.price = (newQuantity * matchingFood.titlePrice)
         saveToCart()
     }else{

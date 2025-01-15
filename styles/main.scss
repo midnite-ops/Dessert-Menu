@@ -105,4 +105,37 @@ body{
     }
     
 }
+@media(max-width: 576px){
+    .parent{
+        flex-direction: column;
+        align-items: center;
+        padding: 50px 30px;
+        gap: 50px;
+        .food-grid{
+            display: grid;
+            grid-template-columns: 350px !important;
+            .food-img{
+                .food-image{
+                    height: 250px;
+                }
+                
+            }
+        }
+    }
+    .order-btn{
+        position: absolute;
+        bottom: -20px;
+        left: 90px !important;
+        padding: 12px 30px;
+        border-radius: 50px;
+        img{
+            width: 25px !important;
+        }
+        p{
+            font-size: 0.85rem !important;
+            font-weight: 500;
+            color: black;
+        }
+    }
+}
 

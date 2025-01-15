@@ -7,25 +7,31 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); 
     .order-confirmed {
+        overflow-y: auto;
         display: flex;
         flex-direction: column;
         background: white;
         padding: 20px;
+        gap: 20px;
         border-radius: 8px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         width: 90%;
-        max-width: 400px;
+        max-width: 500px;
+        max-height: 500px;
         .new-order{
-            margin: 50px 0px;
+            margin: 30px 0px;
             background-color: rgb(253, 242, 229);
             padding: 15px 25px;
             border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
             .order-package{
                 display: flex;
                 align-items: start;
                 gap: 15px;
+                padding-bottom: 10px;
                 border-bottom: 1px solid rgb(219, 219, 219);
-                padding-bottom: 15px;
                 *{
                     margin: 0;
                 }
@@ -39,7 +45,7 @@
                     justify-content: space-between;
                     .order-content{
                         h1{
-                            font-size: 1.2rem;
+                            font-size: 1.1rem;
                             margin-bottom: 5px;
                         }
                         p{
@@ -93,4 +99,14 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+}
+@media(max-width: 576px){
+    .overlay{
+        .order-confirmed{
+            position: fixed;
+            bottom: 0;
+            overflow: hidden;
+            max-height:none;
+        }
+    }
 }
