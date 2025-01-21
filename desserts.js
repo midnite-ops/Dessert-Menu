@@ -80,13 +80,17 @@ document.addEventListener('click', (event) => {
     // Decrement functionality
     if (target.classList.contains('js-decrement')) {
         const quantityElement = document.getElementById(`js-food-quantity-${foodId}`);
-        const product = productId(foodId);
-
-        let quantity = decrementCartItem(product);
+        
+        let quantity = decrementCartItem(productItem);
+        let quantityNum = Number(quantityElement.textContent);
+        quantityNum--;
+        if(quantityNum <= 1){
+            console.log('yes')
+            quantityNum = 1;
+        }
         checkoutSummaryCart()
-        cartTotal(totalCart);
         console.log(cart)
-        quantityElement.textContent = quantity; 
+        quantityElement.textContent = quantityNum; 
     }
 })
 //This fucntion returns an obeject on the condition that the parameter id matches the product id
